@@ -2,6 +2,7 @@ import pygame
 
 from .Viewport import Viewport
 
+
 class Renderer(object):
     def __init__(self, viewport: Viewport):
         self.renderers = []
@@ -12,8 +13,7 @@ class Renderer(object):
 
         pygame.display.set_caption("ForcePush")
 
-    def render(self, surface : pygame.Surface):
-
+    def render(self, surface: pygame.Surface):
         for renderer in self.renderers:
             renderer.render(surface)
 
