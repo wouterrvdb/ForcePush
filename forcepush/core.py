@@ -3,12 +3,10 @@
 import pygame
 
 from forcepush.logic.EntityManager import EntityManager
-from forcepush.renderer.Renderer import Renderer
-
+from forcepush.renderer import renderer
 pygame.init()
 
 entity_manager = EntityManager()
-renderer = Renderer()
 
 run = True
 while run:
@@ -20,6 +18,6 @@ while run:
 
     entity_manager.tick()
 
-    renderer.render()
+    renderer._render()
 
 pygame.quit()

@@ -1,19 +1,27 @@
 import pygame
 
-SCREEN_WIDTH = 1280
-SCREEN_HEIGHT = 720
-
+from .Viewport import Viewport
 
 class Renderer(object):
-    def __init__(self):
+    def __init__(self, viewport: Viewport):
         self.renderers = []
-        self.window = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+        self.window = pygame.display.set_mode((viewport.width, viewport.height))
+        self.window.fill((0, 0, 0))
+
+        self.viewport = viewport
+
         pygame.display.set_caption("ForcePush")
 
-    def render(self):
-        self.window.fill((0, 0, 0))
+    def render(self, surface : pygame.Surface):
+
+        for renderer in self.renderers:
+            renderer.render(surface)
+
         pygame.display.update()
         pass
+
+    def _render(self):
+        self.render(self.window)
 
     def add_renderer(self, renderer):
         # Todo: double check no duplicate
