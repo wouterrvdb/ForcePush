@@ -3,14 +3,18 @@
 import pygame
 
 from forcepush.logic.EntityManager import EntityManager
-from forcepush.renderer import renderer
+from forcepush.logic.terrain import Terrain
+from forcepush.renderer import renderer, terrain_renderer, clock
+
 pygame.init()
 
 entity_manager = EntityManager()
+terrain = Terrain(500, 200)
+
+terrain_renderer.setTerrain(terrain)
 
 run = True
 while run:
-    pygame.time.delay(50)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -19,5 +23,7 @@ while run:
     entity_manager.tick()
 
     renderer._render()
+
+    clock.tick(120)
 
 pygame.quit()

@@ -5,7 +5,7 @@ from .Viewport import Viewport
 class Renderer(object):
     def __init__(self, viewport: Viewport):
         self.renderers = []
-        self.window = pygame.display.set_mode((viewport.width, viewport.height))
+        self.window = pygame.display.set_mode((viewport.width, viewport.height), pygame.HWSURFACE, 32)
         self.window.fill((0, 0, 0))
 
         self.viewport = viewport
@@ -18,7 +18,6 @@ class Renderer(object):
             renderer.render(surface)
 
         pygame.display.update()
-        pass
 
     def _render(self):
         self.render(self.window)
