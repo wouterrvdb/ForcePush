@@ -9,7 +9,7 @@ class PlayerMovementHandler(Handler):
         self.move_right_handler = MoveRightHandler()
 
     def get_event_types(self):
-        return [(pygame.K_a, self.move_left_handler), (pygame.K_d, self.move_right_handler)]
+        return [("key", pygame.K_a, self.move_left_handler), ("key", pygame.K_d, self.move_right_handler)]
 
 
 class MoveLeftHandler(Handler):

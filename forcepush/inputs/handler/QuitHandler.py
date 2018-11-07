@@ -11,7 +11,7 @@ class QuitHandler(Handler):
         self.quit = True
 
     def get_event_types(self):
-        return [(pygame.QUIT, self)]
+        return [("event", pygame.QUIT, self)]
 
     def has_quit(self):
         return self.quit
