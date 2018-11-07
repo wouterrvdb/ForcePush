@@ -2,16 +2,14 @@
 
 import pygame
 
-from forcepush.inputs.InputManager import InputManager
+from forcepush.inputs import input_manager
 from forcepush.inputs.handler.QuitHandler import QuitHandler
-from forcepush.logic.EntityManager import EntityManager
+from forcepush.logic import entity_manager
 from forcepush.logic.terrain import Terrain
 from forcepush.renderer import renderer, terrain_renderer, clock
 
 pygame.init()
 
-input_manager = InputManager()
-entity_manager = EntityManager(input_manager)
 terrain = Terrain(500, 200)
 
 terrain_renderer.setTerrain(terrain)
