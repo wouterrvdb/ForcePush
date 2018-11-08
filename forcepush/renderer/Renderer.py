@@ -11,6 +11,7 @@ class Renderer(object):
 
         self.viewport = viewport
 
+        # pygame.mouse.set_visible(0)
         pygame.display.set_caption("ForcePush")
 
     def render(self, surface: pygame.Surface):

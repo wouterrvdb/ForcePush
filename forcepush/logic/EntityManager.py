@@ -1,6 +1,16 @@
+from .entity.Entity import Entity
+
+
 class EntityManager(object):
     def __init__(self):
-        pass
+        self.entities = {}
+
+    def register_entity(self, entity: Entity):
+        if entity.id in self.entities:
+            # TODO: Throw exception
+            return None
+        self.entities[entity.id] = entity
 
     def tick(self):
-        pass
+        for entity in self.entities.values():
+            entity.tick()

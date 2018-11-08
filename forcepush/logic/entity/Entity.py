@@ -1,6 +1,10 @@
+import uuid
+
+
 class Entity(object):
     def __init__(self):
-        pass
+        # TODO: Generate UUID
+        self.id = uuid.uuid4()
 
     def tick(self):
         pass

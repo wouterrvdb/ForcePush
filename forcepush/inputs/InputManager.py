@@ -32,7 +32,6 @@ class InputManager(object):
         for handler_type, event_type, subhandler in handler.get_event_types():
             if event_type not in self.handlers[handler_type]:
                 self.handlers[handler_type][event_type] = []
-            print(event_type, subhandler)
             self.handlers[handler_type][event_type].append(subhandler)
 
     def deregister_handler(self, handler: Handler):
