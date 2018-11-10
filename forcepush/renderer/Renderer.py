@@ -15,6 +15,8 @@ class Renderer(object):
         pygame.display.set_caption("ForcePush")
 
     def render(self, surface: pygame.Surface):
+        self.viewport.update()
+
         for renderer in self.renderers:
             renderer.render(surface)
 

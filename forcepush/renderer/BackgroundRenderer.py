@@ -14,10 +14,5 @@ class BackgroundRenderer(Renderer):
         self.surface = pygame.Surface((viewport.width, viewport.height), pygame.HWSURFACE, 32)
         self.surface.fill(self.background_color)
 
-        self.updated = True
-
     def render(self, surface : pygame.Surface):
-        if self.updated:
-            surface.blit(self.surface, (0, 0))
-
-            self.updated = False
+        surface.blit(self.surface, (0, 0))

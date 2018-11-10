@@ -1,43 +1,33 @@
+import numpy as np
+
 from forcepush.inputs.handler.player.PlayerMovementHandler import PlayerMovementHandler
 from forcepush.logic.entity.Entity import Entity
-from forcepush.renderer import renderer, viewport
-from forcepush.renderer.PlayerRenderer import PlayerRenderer
-
 
 class Player(Entity):
     def __init__(self):
         super().__init__()
         self.movement_handler = PlayerMovementHandler(self)
-        self.pos_x = 250
-        self.pos_y = 250
-        self.vel_x = 0
-        self.vel_y = 0
-        self.vel_x_max = 8
-        self.vel_y_max = 12
-        self.acc_x = 2
-        self.acc_y = 6
+        self.pos = np.array([250, 250])
+        self.vel = np.array([0, 0])
+        self.vel_max = np.array([8, 12])
+        self.acc = np.array([2, 6])
         self.moved = False
-        self.updated = False
-        renderer.add_renderer(PlayerRenderer(viewport, self))
 
     def move_left(self):
-        self.vel_x = max(self.vel_x - self.acc_x, -self.vel_x_max)
+        self.vel[0] = max(self.vel[0] - self.acc[0], -self.vel_max[0])
         self.moved = True
 
     def move_right(self):
-        self.vel_x = min(self.vel_x + self.acc_x, self.vel_x_max)
+        self.vel[0] = min(self.vel[0] + self.acc[0], self.vel_max[0])
         self.moved = True
 
     def tick(self):
         if not self.moved:
-            if self.vel_x != 0:
-                self.vel_x = self.vel_x + (1 if self.vel_x < 0 else -1)
-            if self.vel_y != 0:
-                self.vel_y = self.vel_y + (1 if self.vel_y < 0 else -1)
+            if self.vel[0] != 0:
+                self.vel[0] = self.vel[0] + (1 if self.vel[0] < 0 else -1)
+            if self.vel[1] != 0:
+                self.vel[1] = self.vel[1] + (1 if self.vel[1] < 0 else -1)
         self.moved = False
-        if self.vel_x == 0 and self.vel_y == 0:
-            self.updated = False
-        else:
-            self.updated = True
-            self.pos_x += self.vel_x
-            self.pos_y += self.vel_y
+
+        if np.any(self.vel):
+            self.pos += self.vel

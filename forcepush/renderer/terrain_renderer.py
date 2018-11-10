@@ -40,4 +40,4 @@ class TerrainRenderer(Renderer):
                 it.iternext()
             self.updated = False
 
-        surface.blit(self.tmp_surface, (0, 0))
+        surface.blit(self.tmp_surface, tuple(self.viewport.offset))
