@@ -4,8 +4,8 @@ import pygame
 import numpy as np
 
 from pygame.sprite import DirtySprite, LayeredDirty
-from forcepush.logic.entity.Player import Player
-from .Renderer import Renderer
+from forcepush.logic.entity.player import Player
+from .renderer import Renderer
 
 class PlayerRenderer(Renderer):
     def __init__(self, viewport):

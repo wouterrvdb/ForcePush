@@ -1,12 +1,10 @@
 import numpy as np
 
-from forcepush.inputs.handler.player.PlayerMovementHandler import PlayerMovementHandler
-from forcepush.logic.entity.Entity import Entity
+from forcepush.logic.entity.entity import Entity
 
 class Player(Entity):
     def __init__(self):
         super().__init__()
-        self.movement_handler = PlayerMovementHandler(self)
         self.pos = np.array([250, 250])
         self.vel = np.array([0, 0])
         self.vel_max = np.array([8, 12])

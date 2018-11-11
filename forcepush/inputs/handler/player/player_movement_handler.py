@@ -1,7 +1,7 @@
 import pygame
 
-from forcepush.inputs.handler.Handler import Handler
-from forcepush.logic.entity import Player
+from forcepush.inputs.handler.handler import Handler
+from forcepush.logic.entity.player import Player
 
 
 class PlayerMovementHandler(Handler):

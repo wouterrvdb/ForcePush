@@ -1,7 +1,7 @@
 import pygame
 
-from .Renderer import Renderer
-from .Viewport import Viewport
+from .renderer import Renderer
+from .viewport import Viewport
 
 pygame.init()
 

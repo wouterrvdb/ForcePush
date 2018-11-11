@@ -15,11 +15,11 @@ class Terrain(object):
         for x in range(100):
             self.data[2*x + 50, 50] = 1
 
-    def setPixel(self, x : int, y : int, material):
+    def set_pixel(self, x : int, y : int, material):
         self.data[x, y] = material
 
-    def getPixel(self, x : int, y : int):
+    def get_pixel(self, x : int, y : int):
         return self.data[x, y]
 
-    def getTerrainIterator(self):
+    def get_terrain_iterator(self):
         return np.nditer(self.data, flags=['multi_index'])

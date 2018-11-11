@@ -1,6 +1,6 @@
 import numpy as np
 
-from forcepush.logic.entity.Entity import Entity
+from forcepush.logic.entity.entity import Entity
 
 class Viewport(object):
     def __init__(self, width : int, height : int):

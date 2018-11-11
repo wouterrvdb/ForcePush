@@ -1,4 +1,4 @@
-from .entity.Entity import Entity
+from .entity.entity import Entity
 
 
 class EntityManager(object):

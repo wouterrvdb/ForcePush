@@ -1,6 +1,6 @@
 import pygame
 
-from forcepush.inputs.handler.Handler import Handler
+from forcepush.inputs.handler.handler import Handler
 
 
 class QuitHandler(Handler):

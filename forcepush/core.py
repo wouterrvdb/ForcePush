@@ -3,7 +3,7 @@
 import pygame
 
 from forcepush.inputs import input_manager
-from forcepush.inputs.handler.QuitHandler import QuitHandler
+from forcepush.inputs.handler.quit_handler import QuitHandler
 from forcepush.logic import entity_manager, player
 from forcepush.logic.terrain import Terrain
 from forcepush.renderer import renderer, terrain_renderer, player_renderer, clock, viewport
@@ -12,7 +12,7 @@ pygame.init()
 
 terrain = Terrain(500, 200)
 
-terrain_renderer.setTerrain(terrain)
+terrain_renderer.set_terrain(terrain)
 player_renderer.set_player(player)
 viewport.set_focus(player)
 

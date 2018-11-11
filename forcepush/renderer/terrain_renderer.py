@@ -1,7 +1,7 @@
 import pygame
 
-from forcepush.renderer import Viewport
-from .Renderer import Renderer
+from .renderer import Viewport
+from .renderer import Renderer
 
 from forcepush.logic.terrain import Terrain
 
@@ -20,7 +20,7 @@ class TerrainRenderer(Renderer):
 
         self.updated = False
 
-    def setTerrain(self, terrain: Terrain):
+    def set_terrain(self, terrain: Terrain):
         self.terrain = terrain
         self.updated = True
 
@@ -29,7 +29,7 @@ class TerrainRenderer(Renderer):
             return
 
         if self.updated:
-            it = self.terrain.getTerrainIterator()
+            it = self.terrain.get_terrain_iterator()
 
             while not it.finished:
                 x, y = it.multi_index

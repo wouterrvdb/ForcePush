@@ -1,6 +1,6 @@
 import pygame
 
-from .Viewport import Viewport
+from .viewport import Viewport
 
 
 class Renderer(object):
