@@ -18,4 +18,4 @@ class Viewport(object):
 
     def update(self):
         if self.focus_entity:
-            self.offset = self._entity_offset - self.focus_entity.pos
+            self.offset = self._entity_offset - self.focus_entity.physics_object.pos

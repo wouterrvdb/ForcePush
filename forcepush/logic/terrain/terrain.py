@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Terrain(object):
     def __init__(self, width : int, height : int):
         self.width = width

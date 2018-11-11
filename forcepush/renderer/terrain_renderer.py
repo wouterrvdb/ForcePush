@@ -5,6 +5,7 @@ from .renderer import Renderer
 
 from forcepush.logic.terrain import Terrain
 
+
 class TerrainRenderer(Renderer):
 
     def __init__(self, viewport: Viewport):
@@ -24,7 +25,7 @@ class TerrainRenderer(Renderer):
         self.terrain = terrain
         self.updated = True
 
-    def render(self, surface : pygame.Surface):
+    def render(self, surface: pygame.Surface):
         if not self.terrain:
             return
 

@@ -51,10 +51,10 @@ class PlayerSprite(DirtySprite):
         self.dirty = 1
         player = self.player_renderer.player
 
-        if player and (not np.array_equal(self._last_known_position, player.pos) or not self._last_known_position is None):
-            pos = self.player_renderer.viewport.offset + player.pos
+        if player and (not np.array_equal(self._last_known_position, player.physics_object.pos) or not self._last_known_position is None):
+            pos = self.player_renderer.viewport.offset + player.physics_object.pos
 
             self.rect.x = pos[0]
             self.rect.y = pos[1]
 
-            self._last_known_position = np.copy(player.pos)
+            self._last_known_position = np.copy(player.physics_object.pos)
