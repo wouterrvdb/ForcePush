@@ -6,10 +6,10 @@ class Player(PhysicsEntity):
         super().__init__()
 
     def move_left(self):
-        self.physics_object.vel[0] = max(self.physics_object.vel[0] - self.physics_object.acc[0], -self.physics_object.vel_max[0])
+        self.physics_object.vel[0] = self.physics_object.vel[0] - self.physics_object.acc[0]
 
     def move_right(self):
-        self.physics_object.vel[0] = min(self.physics_object.vel[0] + self.physics_object.acc[0], self.physics_object.vel_max[0])
+        self.physics_object.vel[0] = self.physics_object.vel[0] + self.physics_object.acc[0]
 
     def tick(self):
         pass

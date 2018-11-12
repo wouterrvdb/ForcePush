@@ -18,6 +18,7 @@ viewport.set_focus(player)
 
 quit_manager = QuitHandler()
 input_manager.register_handler(quit_manager)
+entity_manager.physics_engine.set_terrain(terrain)
 
 while True:
 

@@ -10,4 +10,5 @@ class PhysicsObject(object):
         self.vel = np.array([0.0, 0.0])
         self.vel_max = np.array([8.0, 12.0])
         self.acc = np.array([2.0, 6.0])
-        self.moved = False
+        self.mass = 1.0
+        self.no_gravity = False
