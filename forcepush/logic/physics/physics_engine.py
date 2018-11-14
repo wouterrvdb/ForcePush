@@ -17,13 +17,16 @@ class PhysicsEngine(object):
 
     def apply_physics(self):
         for obj in self.objects:
-            # Gravity
-            obj.vel[1] += self.G * obj.mass
-            print(obj.vel)
+
+            if not obj.no_gravity:
+                obj.vel[1] += self.G * obj.mass
+            # print(obj.vel)
 
             if np.any(obj.vel):
                 # Set any values close to 0, to exactly 0 to avoid bouncing
                 obj.vel[abs(obj.vel) < 1e-8] = 0.0
 
-                # TODO: Check collision
-                obj.pos += obj.vel
+                if obj.collision_box:
+                    self.terrain.collides_with(obj.collision_box)
+                # TODO: Only add fraction of velocity, based on amount of ms passed since last frame
+                obj.move(1)

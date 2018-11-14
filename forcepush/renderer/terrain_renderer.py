@@ -36,7 +36,7 @@ class TerrainRenderer(Renderer):
                 x, y = it.multi_index
 
                 if it[0] != 0:
-                    self.tmp_surface.blit(self.pixel, (x << 2, self.viewport.height - (y << 2)))
+                    self.tmp_surface.blit(self.pixel, (x << 2, y << 2))
 
                 it.iternext()
             self.updated = False
