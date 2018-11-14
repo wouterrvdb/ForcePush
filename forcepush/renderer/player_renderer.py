@@ -8,6 +8,7 @@ from pygame.sprite import DirtySprite, LayeredDirty
 from forcepush.logic.entity.player import Player
 from .renderer import Renderer
 
+
 class PlayerRenderer(Renderer):
     def __init__(self, viewport):
         super().__init__(viewport)
@@ -26,13 +27,14 @@ class PlayerRenderer(Renderer):
     def walk(self):
         self.sprite.update()
 
-    def render(self, surface : pygame.Surface):
+    def render(self, surface: pygame.Surface):
         if not self.bg:
             self.layered.clear(self.sprite.image, surface)
             self.bg = True
 
         self.layered.update()
         self.layered.draw(surface)
+
 
 class PlayerSprite(DirtySprite):
     def __init__(self, player_renderer):
@@ -66,7 +68,8 @@ class PlayerSprite(DirtySprite):
         self.dirty = 1
         player = self.player_renderer.player
 
-        if player and (not np.array_equal(self._last_known_position, player.physics_object.pos) or not self._last_known_position is None):
+        if player and (not np.array_equal(self._last_known_position, player.physics_object.pos)
+                       or self._last_known_position is not None):
             pos = self.player_renderer.viewport.offset + player.physics_object.pos
 
             self.rect.x = pos[0]
@@ -77,8 +80,6 @@ class PlayerSprite(DirtySprite):
         self.animation_speed -= 1
         if self.animation_speed == 0:
             self.image = self.converted_images[self.animation_index]
-            self.animation_speed =self.animation_speed_init
-            if self.animation_index == self.animation_max_index:
-                self.animation_index = 0
-            else:
-                self.animation_max_index += 1
+            self.animation_speed = self.animation_speed_init
+
+            self.animation_index = (self.animation_index + 1) % self.animation_max_index
