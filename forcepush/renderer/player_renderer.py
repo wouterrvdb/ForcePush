@@ -10,13 +10,14 @@ class PlayerRenderer(Renderer):
     def __init__(self, viewport):
         super().__init__(viewport)
 
-        sprite_images = 11
-
-        self.animation_index = 0
-        self.animation_index_max = sprite_images - 1
         self.surface = None
+        self.sprite_images = 11
 
-        self.sprite = SpriteSheet('./forcepush/renderer/sprites/player.png', 3, 4, count=sprite_images)
+        self.sprite = SpriteSheet('./forcepush/renderer/sprites/player.png', 3, 4, count=self.sprite_images)
+
+        self.animation_index = 0  # Index of current animation
+        self.animation_tick_index = 0  # Index of current animation tick
+        self.animation_tick_speed = 5  # New animation every X ticks
 
         self.player = None
         self.bg = False
@@ -35,5 +36,7 @@ class PlayerRenderer(Renderer):
             self.bg = True
 
     def _update(self):
-        self.animation_index = (self.animation_index + 1) % self.animation_index_max
+        if self.animation_tick_index == 0:
+            self.animation_index = (self.animation_index + 1) % (self.sprite_images - 1)
+        self.animation_tick_index = (self.animation_tick_index + 1) % self.animation_tick_speed
         self.sprite.update(self.surface, self.animation_index, 420, 420)  # TODO update location of alien "420, 420)"
