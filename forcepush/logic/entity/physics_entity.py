@@ -3,6 +3,6 @@ from forcepush.logic.physics.physics_object import PhysicsObject
 
 
 class PhysicsEntity(Entity):
-    def __init__(self):
+    def __init__(self, pos, size):
         super().__init__()
-        self.physics_object = PhysicsObject()
+        self.physics_object = PhysicsObject(pos, size)

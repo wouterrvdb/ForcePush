@@ -10,11 +10,30 @@ class PhysicsEngine(object):
         self.terrain = None
         self.G = 0.01
 
+        self._stop_map = {
+            PhysicsCollisionSide.TOP: self._stop_top,
+            PhysicsCollisionSide.BOTTOM: self._stop_bottom,
+            PhysicsCollisionSide.RIGHT: self._stop_right,
+            PhysicsCollisionSide.LEFT: self._stop_left
+        }
+
     def register_object(self, obj):
         self.objects.append(obj)
 
     def set_terrain(self, terrain: Terrain):
         self.terrain = terrain
+
+    def _stop_top(self, obj):
+        obj.vel[1] = min(obj.vel[1], 0)
+
+    def _stop_bottom(self, obj):
+        obj.vel[1] = max(obj.vel[1], 0)
+
+    def _stop_left(self, obj):
+        obj.vel[0] = max(obj.vel[0], 0)
+
+    def _stop_right(self, obj):
+        obj.vel[0] = min(obj.vel[0], 0)
 
     def apply_physics(self):
         for obj in self.objects:
@@ -29,12 +48,11 @@ class PhysicsEngine(object):
 
                 if obj.collision_box:
                     collision_sides = obj.collides_with(self.terrain.get_physics_rects())
+                    for i in PhysicsCollisionSide:
+                        if(collision_sides[i]):
+                            print(i)
 
-                    if collision_sides[PhysicsCollisionSide.TOP]:
-                        obj.vel[1] = min(obj.vel[1], 0)
-
-                    if collision_sides[PhysicsCollisionSide.BOTTOM]:
-                        obj.vel[1] = max(obj.vel[1], 0)
+                            self._stop_map[i](obj)
 
                 # TODO: Only add fraction of velocity, based on amount of ms passed since last frame
                 obj.move(1)
