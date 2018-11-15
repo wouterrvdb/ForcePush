@@ -1,5 +1,6 @@
 import numpy as np
 
+from forcepush.logic.physics import PhysicsCollisionSide
 from forcepush.logic.terrain import Terrain
 
 
@@ -27,6 +28,13 @@ class PhysicsEngine(object):
                 obj.vel[abs(obj.vel) < 1e-8] = 0.0
 
                 if obj.collision_box:
-                    self.terrain.collides_with(obj.collision_box)
+                    collision_sides = obj.collides_with(self.terrain.get_physics_rects())
+
+                    if collision_sides[PhysicsCollisionSide.TOP]:
+                        obj.vel[1] = min(obj.vel[1], 0)
+
+                    if collision_sides[PhysicsCollisionSide.BOTTOM]:
+                        obj.vel[1] = max(obj.vel[1], 0)
+
                 # TODO: Only add fraction of velocity, based on amount of ms passed since last frame
                 obj.move(1)

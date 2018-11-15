@@ -8,7 +8,7 @@ class Terrain(object):
         self.height = height
 
         self.data = np.zeros((width, height))
-        self.rects = []
+        self._rects: Rect = []
 
         for x in range(10):
             for y in range(10):
@@ -29,21 +29,16 @@ class Terrain(object):
         return np.nditer(self.data, flags=['multi_index'])
 
     def update_collision(self):
-        self.rects = []
+        self._rects = []
         it = self.get_terrain_iterator()
 
         while not it.finished:
             x, y = it.multi_index
             if it[0] != 0:
 
-                self.rects.append(Rect(x << 2, y << 2, 4, 4))
+                self._rects.append(Rect(x << 2, y << 2, 4, 4))
 
             it.iternext()
 
-    # TODO: Optimise this (suggestion, calculate each side independently with custom collision check)
-    def collides_with(self, other):
-        # print(self.rects, other)
-        collision = {}
-        for i in other.collidelistall(self.rects):
-            print(other, self.rects[i])
-        return collision
+    def get_physics_rects(self):
+        return self._rects
