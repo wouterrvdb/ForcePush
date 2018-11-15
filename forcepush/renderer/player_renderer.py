@@ -13,7 +13,7 @@ class PlayerRenderer(Renderer):
         sprite_images = 11
 
         self.animation_index = 0
-        self.animation_index_max = sprite_images -1
+        self.animation_index_max = sprite_images - 1
         self.surface = None
 
         self.sprite = SpriteSheet('./forcepush/renderer/sprites/player.png', 3, 4, count=sprite_images)
@@ -36,4 +36,4 @@ class PlayerRenderer(Renderer):
 
     def _update(self):
         self.animation_index = (self.animation_index + 1) % self.animation_index_max
-        self.sprite.update(self.surface, self.animation_index, 420, 420)  # TODO update location of alien dude "0, 0)"
+        self.sprite.update(self.surface, self.animation_index, 420, 420)  # TODO update location of alien "420, 420)"
